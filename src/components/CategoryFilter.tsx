@@ -1,5 +1,3 @@
-import { SyntheticEvent } from "react";
-
 interface CategoryFilterProps {
   categories: string[];
   onSelect: (selectedCategory: string) => void;
@@ -12,8 +10,8 @@ const CategoryFilter = ({ categories, onSelect }: CategoryFilterProps) => {
       onChange={(event) => onSelect(event.target.value)}
     >
       <option value={""}>All categories</option>
-      {categories.map((category, index) => (
-        <option key={index} value={category}>
+      {categories.map((category) => (
+        <option key={category} value={category}>
           {category}
         </option>
       ))}

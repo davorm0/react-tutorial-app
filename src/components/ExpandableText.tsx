@@ -11,9 +11,6 @@ const ExpandableText = ({
 }: ExpandableTextProps) => {
   const [isExpanded, setExpandedStatus] = useState(false);
 
-  if (children.length <= maxCharacters) {
-  }
-
   const shortVersion = `${children.substring(0, maxCharacters)}...`;
 
   return (

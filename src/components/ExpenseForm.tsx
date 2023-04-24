@@ -26,7 +26,7 @@ const ExpenseForm = ({ categories, onSubmit }: ExpenseFormProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<FormData>({ resolver: zodResolver(schema) });
 
   return (
@@ -67,8 +67,8 @@ const ExpenseForm = ({ categories, onSubmit }: ExpenseFormProps) => {
           }
         >
           <option key={0} value={0}></option>
-          {categories.map((category, index) => (
-            <option value={category} key={index + 1}>
+          {categories.map((category) => (
+            <option value={category} key={category}>
               {category}
             </option>
           ))}
