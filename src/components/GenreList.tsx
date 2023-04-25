@@ -1,4 +1,4 @@
-import { List } from "@chakra-ui/react";
+import { Heading, List } from "@chakra-ui/react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import GenreListItem from "./GenreListItem";
 import GenreListItemSkeleton from "./GenreListItemSkeleton";
@@ -15,17 +15,22 @@ const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   if (error) return null;
 
   return (
-    <List>
-      {isLoading && skeleton.map((id) => <GenreListItemSkeleton key={id} />)}
-      {data.map((genre) => (
-        <GenreListItem
-          key={genre.id}
-          genre={genre}
-          selectedGenre={selectedGenre}
-          onSelectGenre={onSelectGenre}
-        />
-      ))}
-    </List>
+    <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Genres
+      </Heading>
+      <List>
+        {isLoading && skeleton.map((id) => <GenreListItemSkeleton key={id} />)}
+        {data.map((genre) => (
+          <GenreListItem
+            key={genre.id}
+            genre={genre}
+            selectedGenre={selectedGenre}
+            onSelectGenre={onSelectGenre}
+          />
+        ))}
+      </List>
+    </>
   );
 };
 

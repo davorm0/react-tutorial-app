@@ -3,11 +3,10 @@ import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 
 interface Props {
-  searchText: string;
   onSearch: (searchValue: string) => void;
 }
 
-const Search = ({ searchText, onSearch }: Props) => {
+const Search = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
 
   return (

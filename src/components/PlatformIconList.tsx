@@ -15,9 +15,10 @@ import { Platform } from "../hooks/usePlatforms";
 
 interface Props {
   platforms: Platform[];
+  selectedPlatform?: Platform | null;
 }
 
-const PlatformIconList = ({ platforms }: Props) => {
+const PlatformIconList = ({ platforms, selectedPlatform }: Props) => {
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
     playstation: FaPlaystation,
@@ -36,7 +37,9 @@ const PlatformIconList = ({ platforms }: Props) => {
         <Icon
           key={platform.slug}
           as={iconMap[platform.slug]}
-          color="gray.500"
+          color={`gray.${
+            platform.slug === selectedPlatform?.slug ? "50" : "500"
+          }`}
         />
       ))}
     </HStack>
