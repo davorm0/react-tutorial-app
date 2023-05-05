@@ -1,24 +1,24 @@
 import { HStack, Icon } from "@chakra-ui/react";
+import { IconType } from "react-icons";
+import { BsGlobe } from "react-icons/bs";
 import {
-  FaWindows,
-  FaPlaystation,
-  FaXbox,
+  FaAndroid,
   FaApple,
   FaLinux,
-  FaAndroid,
+  FaPlaystation,
+  FaWindows,
+  FaXbox,
 } from "react-icons/fa";
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
-import { BsGlobe } from "react-icons/bs";
-import { IconType } from "react-icons";
-import { Platform } from "../hooks/usePlatforms";
+import { Platform } from "../services/platformService";
 
 interface Props {
   platforms: Platform[];
-  selectedPlatform?: Platform | null;
+  selectedPlatformId?: number;
 }
 
-const PlatformIconList = ({ platforms, selectedPlatform }: Props) => {
+const PlatformIconList = ({ platforms, selectedPlatformId }: Props) => {
   const iconMap: { [key: string]: IconType } = {
     pc: FaWindows,
     playstation: FaPlaystation,
@@ -37,9 +37,7 @@ const PlatformIconList = ({ platforms, selectedPlatform }: Props) => {
         <Icon
           key={platform.slug}
           as={iconMap[platform.slug]}
-          color={`gray.${
-            platform.slug === selectedPlatform?.slug ? "50" : "500"
-          }`}
+          color={`gray.${platform.id === selectedPlatformId ? "50" : "500"}`}
         />
       ))}
     </HStack>
