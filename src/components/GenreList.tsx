@@ -1,17 +1,15 @@
 import { Heading, List } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
-import { Genre } from "../services/genreService";
+import useGameQueryStore from "../store";
 import GenreListItem from "./GenreListItem";
 import GenreListItemSkeleton from "./GenreListItemSkeleton";
 
-interface Props {
-  selectedGenreId?: number;
-  onSelectGenre: (genre: Genre) => void;
-}
-
-const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
+const GenreList = () => {
   const { data, error, isLoading } = useGenres();
   const skeleton = [1, 2, 3, 4, 5, 6];
+
+  const selectedGenreId = useGameQueryStore((g) => g.gameQuery.genreId);
+  const selectGenreId = useGameQueryStore((g) => g.setGenreId);
 
   if (error) return null;
 
@@ -27,7 +25,7 @@ const GenreList = ({ selectedGenreId, onSelectGenre }: Props) => {
             key={genre.id}
             genre={genre}
             selectedGenreId={selectedGenreId}
-            onSelectGenre={onSelectGenre}
+            onSelectGenre={() => selectGenreId(genre.id)}
           />
         ))}
       </List>
